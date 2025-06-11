@@ -1,5 +1,7 @@
 FROM alpine:3.14
 
+ARG   SSH_PRIVATE_KEY=""
+
 RUN apk add --no-cache \
     php7 \
     php7-cli \
@@ -19,5 +21,10 @@ RUN apk add --no-cache \
     && rm -rf /tmp/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN   mkdir -m 700 ~/.ssh && \
+      echo "$SSH_PRIVATE_KEY" |tr -d '\r' > ~/.ssh/id_rsa && \
+      chmod 600 ~/.ssh/id_rsa && \
+      ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts 
 
 WORKDIR /app
