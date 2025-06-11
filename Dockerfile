@@ -12,6 +12,7 @@ RUN apk add --no-cache \
     php7-ctype \
     php7-mbstring \
     php7-curl \
+    curl \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 
