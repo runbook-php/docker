@@ -14,6 +14,7 @@ RUN apk add --no-cache \
     php7-curl \
     php7-fileinfo \
     curl \
+    openssh-client \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 
